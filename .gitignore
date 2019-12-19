@@ -1,7 +1,7 @@
-.vscode\
-build\
-lib\
-notes\
+.vscode/
+build/
+lib/
+notes/
 
 # Prerequisites
 *.d
