@@ -20,7 +20,6 @@ add_library(game_lib STATIC
     sdl_wrapper.cpp
 )
 add_executable(${CMAKE_PROJECT_NAME} main.cpp)
-# target_link_libraries(${CMAKE_PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 target_link_libraries(${CMAKE_PROJECT_NAME} game_lib ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 
 install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX})
