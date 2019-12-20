@@ -14,7 +14,7 @@ file(GLOB SDL2_IMAGE_SEARCH_PATHS
 )
 
 find_path(SDL2_IMAGE_INCLUDE_DIR SDL_image.h
-    PATH_SUFFIXES include/ sdl2/include
+    PATH_SUFFIXES include/ include/SDL2
     PATHS ${SDL2_IMAGE_SEARCH_PATHS}
 )
 

@@ -1,8 +1,11 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.5)
 
 project(RLPrototype)
 
 set(PROJECT_LIB_DIR "${PROJECT_SOURCE_DIR}/../lib")
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../cmake)
 
