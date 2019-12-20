@@ -18,6 +18,7 @@ add_library(game_lib STATIC
     game.cpp
     assets.cpp
     sdl_wrapper.cpp
+    world.cpp
 )
 add_executable(${CMAKE_PROJECT_NAME} main.cpp)
 target_link_libraries(${CMAKE_PROJECT_NAME} game_lib ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})

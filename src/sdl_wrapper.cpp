@@ -18,7 +18,7 @@ bool start_sdl()
         return false;
     }
 
-    sdl->window = SDL_CreateWindow( "SyndicusRL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 360, 0 );
+    sdl->window = SDL_CreateWindow( "SyndicusRL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1920, 1080, 0 );
     if ( !sdl->window ) {
         std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
         return false;
@@ -29,6 +29,9 @@ bool start_sdl()
         std::cout << "SDL_CreateRenderer Error" << SDL_GetError() << std::endl;
         return false;
     }
+
+    // game art is rendered in 640x360
+    SDL_RenderSetLogicalSize( sdl->renderer, 640, 360 );
 
     return true;
 }

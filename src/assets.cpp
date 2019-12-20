@@ -1,5 +1,6 @@
 #include "assets.h"
 
+#include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
 #include <unordered_map>
@@ -14,10 +15,12 @@ void Assets::load_texture( SDL_Renderer* renderer, const string& file_name )
         return;
     }
 
-    TexturePtr texture = unique_ptr<Texture, TextureDestroyer>( new Texture() );
+    TexturePtr texture = unique_ptr<Texture, TextureDestroyer>(new Texture());
     texture->tex = sdl_texture;
-    SDL_QueryTexture( texture->tex, NULL, NULL, &texture->rect.w, &texture->rect.w );
+    // TODO: really only need width and height on texture, not full SDL_Rect
+    SDL_QueryTexture( texture->tex, NULL, NULL, &texture->rect.w, &texture->rect.h );
     texture_map.insert( make_pair( file_name, move( texture ) ) );
+    cout << "Successfully loaded texture " << file_name << endl;
 }
 
 Texture* Assets::get_texture( const string& file_name )

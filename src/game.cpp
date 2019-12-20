@@ -12,10 +12,10 @@ bool Game::start_up()
         return false;
     }
 
-    // assets->load_texture( sdl->renderer, "test3.png" );
-    // if ( assets->get_texture( "test3.png" ) ) {
-    //     std::cout << "wow the texture is here" << std::endl;
-    // }
+    assets->load_texture( sdl->renderer, "data/gfx/floor.png" );
+    assets->load_texture( sdl->renderer, "data/gfx/wall.png" );
+    assets->load_texture( sdl->renderer, "data/gfx/wall_top.png" );
+    world->load_map( "data/maps/test_map.csv" );
 
     running = true;
 
@@ -45,7 +45,9 @@ void Game::update()
     }
 
     SDL_RenderClear( sdl->renderer );
-    // SDL_RenderCopy( sdl->renderer, img, NULL, &texr );
+
+    world->render();
+
     SDL_RenderPresent( sdl->renderer );
 }
 

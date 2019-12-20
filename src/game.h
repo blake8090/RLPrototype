@@ -1,6 +1,7 @@
 #pragma once
 
 #include "assets.h"
+#include "world.h"
 
 #include <memory>
 
@@ -12,7 +13,8 @@ class Game
 {
   public:
     Game() : running( false ),
-             assets( std::make_unique<Assets>() ) {}
+             assets( std::make_unique<Assets>() ),
+             world( std::make_unique<World>() ) {}
     ~Game();
 
     bool start_up();
@@ -21,6 +23,7 @@ class Game
     bool is_running();
 
     std::unique_ptr<Assets> assets;
+    std::unique_ptr<World> world;
 
   private:
     bool running;

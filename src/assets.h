@@ -1,7 +1,5 @@
 #pragma once
 
-#include "sdl.h"
-
 #include <SDL.h>
 #include <SDL_image.h>
 #include <memory>
@@ -16,6 +14,7 @@ struct TextureDestroyer {
     void operator()( Texture* t ) const
     {
         SDL_DestroyTexture( t->tex );
+        delete t;
     }
 };
 
@@ -28,7 +27,6 @@ class Assets
     ~Assets();
 
     void load_texture( SDL_Renderer* renderer, const std::string& file_name );
-    void free_map();
     Texture* get_texture( const std::string& file_name );
 
   private:
