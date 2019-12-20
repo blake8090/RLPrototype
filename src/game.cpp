@@ -25,7 +25,6 @@ bool Game::start_up()
 void Game::shut_down()
 {
     std::cout << "Shutting down engine" << std::endl;
-    assets.release();
     end_sdl();
 }
 

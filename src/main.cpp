@@ -19,7 +19,6 @@ int main()
     }
 
     game->shut_down();
-    game.release();
 
     return 0;
 }
