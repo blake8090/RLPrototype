@@ -8,12 +8,12 @@
 #include <unordered_map>
 
 struct Texture {
-    SDL_Texture *tex;
+    SDL_Texture* tex;
     SDL_Rect rect = {0, 0, 0, 0};
 };
 
 struct TextureDestroyer {
-    void operator()( Texture *t ) const
+    void operator()( Texture* t ) const
     {
         SDL_DestroyTexture( t->tex );
     }
@@ -27,9 +27,9 @@ class Assets
     Assets() {}
     ~Assets();
 
-    void load_texture( SDL_Renderer *renderer, const std::string &file_name );
+    void load_texture( SDL_Renderer* renderer, const std::string& file_name );
     void free_map();
-    Texture *get_texture( const std::string &file_name );
+    Texture* get_texture( const std::string& file_name );
 
   private:
     std::unordered_map<std::string, TexturePtr> texture_map;

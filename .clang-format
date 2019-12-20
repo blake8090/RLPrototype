@@ -7,4 +7,4 @@ ColumnLimit: 0
 SpacesInParentheses: true
 
 IncludeBlocks: Regroup
-
+PointerAlignment: Left

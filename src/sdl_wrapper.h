@@ -1,7 +1,7 @@
 #pragma once
 
-#include <memory>
 #include <SDL.h>
+#include <memory>
 
 struct SDL {
     SDL_Window* window;

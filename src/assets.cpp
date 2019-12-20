@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void Assets::load_texture( SDL_Renderer *renderer, const string &file_name )
+void Assets::load_texture( SDL_Renderer* renderer, const string& file_name )
 {
     auto sdl_texture = IMG_LoadTexture( renderer, file_name.c_str() );
     if ( !sdl_texture ) {
@@ -20,7 +20,7 @@ void Assets::load_texture( SDL_Renderer *renderer, const string &file_name )
     texture_map.insert( make_pair( file_name, move( texture ) ) );
 }
 
-Texture *Assets::get_texture( const string &file_name )
+Texture* Assets::get_texture( const string& file_name )
 {
     auto texture = texture_map.find( file_name );
     if ( texture == texture_map.end() ) {
