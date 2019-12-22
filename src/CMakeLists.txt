@@ -1,18 +1,6 @@
-cmake_minimum_required(VERSION 3.5)
-
-project(RLPrototype)
-
-set(PROJECT_LIB_DIR "${PROJECT_SOURCE_DIR}/../lib")
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../cmake)
-
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-
-include_directories(${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 add_library(game_lib STATIC
     game.cpp
@@ -20,6 +8,7 @@ add_library(game_lib STATIC
     sdl_wrapper.cpp
     world.cpp
 )
+
 add_executable(${CMAKE_PROJECT_NAME} main.cpp)
 target_link_libraries(${CMAKE_PROJECT_NAME} game_lib ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 
