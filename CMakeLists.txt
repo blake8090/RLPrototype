@@ -15,3 +15,4 @@ find_package(SDL2_image REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR})
 
 add_subdirectory(src)
+add_subdirectory(test)

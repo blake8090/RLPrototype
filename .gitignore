@@ -1,7 +1,12 @@
-.vscode/
 build/
+out/
 lib/
 notes/
+
+# Visual Studio
+.vs/
+.vscode/
+CMakeSettings.json
 
 # Prerequisites
 *.d
@@ -20,10 +25,6 @@ notes/
 *.so
 *.dylib
 *.dll
-
-# Fortran module files
-*.mod
-*.smod
 
 # Compiled Static libraries
 *.lai
