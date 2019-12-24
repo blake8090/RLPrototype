@@ -1,0 +1,10 @@
+[
+  {
+    "gfx": "data/gfx/wall.png",
+    "collidable": true,
+    "ceilingGfx": "data/gfx/wall_top.png"
+  },
+  {
+    "gfx": "data/gfx/floor.png"
+  }
+]

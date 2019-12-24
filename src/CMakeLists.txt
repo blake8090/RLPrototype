@@ -7,6 +7,7 @@ add_library(game_lib STATIC
     assets.cpp
     sdl_wrapper.cpp
     world.cpp
+    tile_set.cpp
 )
 
 add_executable(${CMAKE_PROJECT_NAME} main.cpp)

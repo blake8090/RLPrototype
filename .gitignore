@@ -1,7 +1,7 @@
-build/
-out/
-lib/
-notes/
+/build/
+/out/
+/lib/
+/notes/
 
 # Visual Studio
 .vs/

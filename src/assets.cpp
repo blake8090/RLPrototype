@@ -15,7 +15,7 @@ void Assets::load_texture( SDL_Renderer* renderer, const string& file_name )
         return;
     }
 
-    TexturePtr texture = unique_ptr<Texture, TextureDestroyer>(new Texture());
+    TexturePtr texture = unique_ptr<Texture, TextureDestroyer>( new Texture() );
     texture->tex = sdl_texture;
     // TODO: really only need width and height on texture, not full SDL_Rect
     SDL_QueryTexture( texture->tex, NULL, NULL, &texture->rect.w, &texture->rect.h );
@@ -30,6 +30,18 @@ Texture* Assets::get_texture( const string& file_name )
         return nullptr;
     }
     return texture->second.get();
+}
+
+void Assets::load_tile_set( const std::string& file_name )
+{
+    tile_set = std::unique_ptr<TileSet>( new TileSet() );
+    tile_set->load_tile_set( file_name );
+}
+
+// TODO: maybe return a reference and assert that the tile set was loaded first?
+TileSet* Assets::get_tile_set()
+{
+    return tile_set.get();
 }
 
 Assets::~Assets()

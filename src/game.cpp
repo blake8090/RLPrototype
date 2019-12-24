@@ -1,6 +1,7 @@
 #include "game.h"
 
 #include "sdl_wrapper.h"
+#include "tile_set.h"
 
 #include <iostream>
 
@@ -15,6 +16,9 @@ bool Game::start_up()
     assets->load_texture( sdl->renderer, "data/gfx/floor.png" );
     assets->load_texture( sdl->renderer, "data/gfx/wall.png" );
     assets->load_texture( sdl->renderer, "data/gfx/wall_top.png" );
+
+    assets->load_tile_set( "data/tiles.json" );
+
     world->load_map( "data/maps/test_map.csv" );
 
     running = true;
