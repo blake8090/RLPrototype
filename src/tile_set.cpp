@@ -45,7 +45,7 @@ void TileSet::load_tile_set( const std::string& file_name )
 
 Tile* TileSet::get_tile( int id )
 {
-    if ( id > tiles.size() ) {
+    if ( id < 0 || id >= tiles.size() ) {
         return nullptr;
     }
     // TODO: Check if tile actually exists

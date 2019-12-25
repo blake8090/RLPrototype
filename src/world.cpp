@@ -42,9 +42,12 @@ void World::render()
     for ( int y = 0; y < tiles.size(); y++ ) {
         auto& row = tiles[y];
         for ( int x = 0; x < row.size(); x++ ) {
-            std::string texture_name = determine_texture( row[x] );
+            Tile* tile = game->assets->get_tile_set()->get_tile( row[x] );
+            if ( !tile ) {
+                continue;
+            }
 
-            Texture* texture = game->assets->get_texture( texture_name );
+            Texture* texture = game->assets->get_texture( tile->gfx );
             if ( !texture ) {
                 continue;
             }
@@ -55,26 +58,25 @@ void World::render()
                 tile_size,
                 tile_size};
             SDL_RenderCopy( sdl->renderer, texture->tex, NULL, &rect );
+
+            // check for ceiling tiles and render if present
+            if ( !tile->ceilingGfx.empty() ) {
+                texture = game->assets->get_texture( tile->ceilingGfx );
+                if ( texture ) {
+                    SDL_Rect rect = {
+                        x * tile_size,
+                        (y * tile_size) - tile_size,
+                        tile_size,
+                        tile_size};
+                    SDL_RenderCopy( sdl->renderer, texture->tex, NULL, &rect );
+                }
+            }
         }
     }
 }
 
 World::~World()
 {
-}
-
-static std::string determine_texture( int id )
-{
-    switch ( id ) {
-    case 0:
-        return "data/gfx/wall.png";
-    case 1:
-        return "data/gfx/wall_top.png";
-    case 2:
-        return "data/gfx/floor.png";
-    default:
-        return "";
-    }
 }
 
 static void parse_csv_line( const std::string& line, std::vector<int>& vec )

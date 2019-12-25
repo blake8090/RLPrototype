@@ -19,7 +19,7 @@ bool Game::start_up()
 
     assets->load_tile_set( "data/tiles.json" );
 
-    world->load_map( "data/maps/test_map.csv" );
+    world->load_map( "data/maps/basic.csv" );
 
     running = true;
 

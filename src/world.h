@@ -23,8 +23,6 @@ class World
     std::vector<std::vector<int>> tiles;
 };
 
-static std::string determine_texture( int id );
-
 /**
  * Parses a CSV line into integers.
  * Results are pushed back into the provided vector 
