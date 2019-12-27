@@ -6,6 +6,7 @@ target_include_directories(catch INTERFACE ${PROJECT_SOURCE_DIR}/test/catch/)
 add_executable(unit_tests
 	test_main.cpp
 	sample_test.cpp
+	data_file_test.cpp
 )
 
 target_include_directories(unit_tests
