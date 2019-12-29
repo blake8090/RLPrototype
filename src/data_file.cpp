@@ -1,6 +1,7 @@
 #include "data_file.h"
 
 #include <algorithm>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -38,6 +39,87 @@ std::vector<std::string> node::get_strings( const std::string& key )
     return std::vector<std::string>();
 }
 
+int node::get_int( const std::string& key, int default_value )
+{
+    int result = default_value;
+    std::string raw_value = get_string( key );
+    if ( !raw_value.empty() ) {
+        std::stringstream ss( raw_value );
+        ss >> result;
+    }
+    return result;
+}
+
+std::vector<node> parser::parse()
+{
+    while ( !eof() ) {
+        eat_whitespace();
+        if ( content[index] == '[' ) {
+            parse_node();
+        } else if ( std::isalpha( content[index] ) ) {
+            parse_key_value();
+        } else {
+            // TODO: log unexpected error
+            break;
+        }
+    }
+    save_current_node();
+    return nodes;
+}
+
+void parser::parse_node()
+{
+    // skip over '['
+    index++;
+
+    if ( eof() ) {
+        // TODO: should throw error
+        return;
+    }
+
+    std::string node_name = read_until( ']' );
+    save_current_node();
+    index++;
+}
+
+void parser::parse_key_value()
+{
+    std::string key = read_until( '=' );
+    if ( eof() ) {
+        // TODO: log unexpected EOF
+        return;
+    }
+    rtrim( key );
+    // skip '='
+    index++;
+    eat_whitespace();
+    if ( eof() ) {
+        return;
+    }
+
+    value val;
+    std::string raw_value;
+
+    if ( content[index] == '-' || std::isdigit( content[index] ) ) {
+        val.type = value_type::String;
+        raw_value += content[index];
+        index++;
+        while ( !eof() && content[index] != '\n' ) {
+            raw_value += content[index];
+            index++;
+        }
+    } else if ( content[index] == '"' ) {
+        index++;
+        raw_value = read_until( '"' );
+        index++;
+    } else {
+        // TODO: throw error
+    }
+
+    val.raw_values.push_back( raw_value );
+    currentNode.values.emplace( key, val );
+}
+
 bool parser::eof()
 {
     return index >= content.size();
@@ -47,63 +129,6 @@ void parser::eat_whitespace()
 {
     while ( !eof() && std::isspace( content[index] ) ) {
         index++;
-    }
-}
-
-std::vector<node> parser::parse()
-{
-    while ( !eof() ) {
-        eat_whitespace();
-        if ( content[index] == '[' ) {
-            parse_node_definition();
-        } else if ( std::isalpha( content[index] ) ) {
-            parse_key_value();
-        } else {
-            // TODO: log unexpected error
-            break;
-        }
-        index++;
-    }
-    save_current_node();
-    return nodes;
-}
-
-void parser::parse_node_definition()
-{
-    // skip over '['
-    index++;
-
-    if ( eof() ) {
-        // should throw error
-        return;
-    }
-
-    std::string node_name = read_until( ']' );
-    save_current_node();
-}
-
-void parser::parse_key_value()
-{
-    std::string key = read_until( '=' );
-    rtrim( key );
-    // skip '='
-    index++;
-    // clear leading whitespace from value definition
-    eat_whitespace();
-    if ( eof() ) {
-        return;
-    }
-
-    bool is_string = ( content[index] == '"' ) || ( content[index] == '\\' && next_char_is( '"' ) );
-    if ( content[index] == '"' ) {
-        index++;
-        std::string raw_value = read_until( '"' );
-
-        value value;
-        value.raw_values.push_back( raw_value );
-        value.type == value_type::String;
-
-        currentNode.values.emplace( key, value );
     }
 }
 

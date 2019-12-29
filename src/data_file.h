@@ -26,7 +26,7 @@ struct node {
     std::string get_string( const std::string& key, const std::string& default_value = "" );
     std::vector<std::string> get_strings( const std::string& key );
 
-    //int get_int( const std::string& key, int default_value = 0 );
+    int get_int( const std::string& key, int default_value = 0 );
     //std::vector<int> get_ints( const std::string& key );
 
     //bool get_boolean( const std::string& key, bool default_value = false );
@@ -55,12 +55,11 @@ class parser
     std::vector<node> nodes;
     node currentNode;
 
-    bool eof();
-    void eat_whitespace();
-
-    void parse_node_definition();
+    void parse_node();
     void parse_key_value();
 
+    bool eof();
+    void eat_whitespace();
     std::string read_until( char until );
     bool next_char_is( char c );
     void save_current_node();
