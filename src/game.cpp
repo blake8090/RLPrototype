@@ -9,17 +9,17 @@ bool Game::start_up()
 {
     std::cout << "Starting up engine" << std::endl;
 
-    if ( !start_sdl() ) {
+    if (!start_sdl()) {
         return false;
     }
 
-    assets->load_texture( sdl->renderer, "data/gfx/floor.png" );
-    assets->load_texture( sdl->renderer, "data/gfx/wall.png" );
-    assets->load_texture( sdl->renderer, "data/gfx/wall_top.png" );
+    assets->load_texture(sdl->renderer, "data/gfx/floor.png");
+    assets->load_texture(sdl->renderer, "data/gfx/wall.png");
+    assets->load_texture(sdl->renderer, "data/gfx/wall_top.png");
 
-    assets->load_tile_set( "data/tiles.json" );
+    assets->load_tile_set("data/tiles.json");
 
-    world->load_map( "data/maps/test_map.csv" );
+    world->load_map("data/maps/test_map.csv");
 
     running = true;
 
@@ -40,19 +40,19 @@ bool Game::is_running()
 void Game::update()
 {
     SDL_Event e;
-    if ( SDL_PollEvent( &e ) ) {
-        if ( e.type == SDL_QUIT ) {
+    if (SDL_PollEvent(&e)) {
+        if (e.type == SDL_QUIT) {
             running = false;
-        } else if ( e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_ESCAPE ) {
+        } else if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_ESCAPE) {
             running = false;
         }
     }
 
-    SDL_RenderClear( sdl->renderer );
+    SDL_RenderClear(sdl->renderer);
 
     world->render();
 
-    SDL_RenderPresent( sdl->renderer );
+    SDL_RenderPresent(sdl->renderer);
 }
 
 Game::~Game()

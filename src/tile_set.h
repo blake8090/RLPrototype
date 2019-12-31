@@ -12,15 +12,14 @@ struct Tile {
     bool collidable = false;
 };
 
-class TileSet
-{
-  public:
+class TileSet {
+public:
     TileSet() {}
     ~TileSet();
 
-    void load_tile_set( const std::string& file_name );
-    Tile* get_tile( int id );
+    void load_tile_set(const std::string& file_name);
+    Tile* get_tile(int id);
 
-  private:
+private:
     std::vector<std::unique_ptr<Tile>> tiles;
 };
