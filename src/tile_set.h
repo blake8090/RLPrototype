@@ -15,7 +15,7 @@ struct Tile {
 class TileSet {
 public:
     TileSet() {}
-    ~TileSet();
+    ~TileSet(){};
 
     void load_tile_set(const std::string& file_name);
     Tile* get_tile(int id);

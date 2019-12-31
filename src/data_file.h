@@ -46,7 +46,7 @@ public:
         : content(c)
     {
     }
-    ~parser() {}
+    ~parser(){};
 
     std::vector<node> parse();
 

@@ -43,7 +43,3 @@ TileSet* Assets::get_tile_set()
 {
     return tile_set.get();
 }
-
-Assets::~Assets()
-{
-}

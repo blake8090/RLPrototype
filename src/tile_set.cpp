@@ -51,7 +51,3 @@ Tile* TileSet::get_tile(int id)
     // TODO: Check if tile actually exists
     return tiles[id].get();
 }
-
-TileSet::~TileSet()
-{
-}

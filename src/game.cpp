@@ -54,7 +54,3 @@ void Game::update()
 
     SDL_RenderPresent(sdl->renderer);
 }
-
-Game::~Game()
-{
-}

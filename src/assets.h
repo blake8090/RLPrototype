@@ -25,7 +25,7 @@ using TexturePtr = std::unique_ptr<Texture, TextureDestroyer>;
 class Assets {
 public:
     Assets() {}
-    ~Assets();
+    ~Assets(){};
 
     void load_texture(SDL_Renderer* renderer, const std::string& file_name);
     Texture* get_texture(const std::string& file_name);

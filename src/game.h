@@ -17,7 +17,7 @@ public:
         , world(std::make_unique<World>())
     {
     }
-    ~Game();
+    ~Game(){};
 
     bool start_up();
     void update();

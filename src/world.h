@@ -12,7 +12,7 @@ public:
         : tiles(WORLD_MAX_WIDTH, std::vector<int>(WORLD_MAX_HEIGHT))
     {
     }
-    ~World();
+    ~World(){};
 
     /**
      * Loads a map from a CSV file.
@@ -24,10 +24,10 @@ private:
     std::vector<std::vector<int>> tiles;
 };
 
-static std::string determine_texture(int id);
-
-/**
- * Parses a CSV line into integers.
- * Results are pushed back into the provided vector 
- */
-static void parse_csv_line(const std::string& line, std::vector<int>& vec);
+//static std::string determine_texture(int id);
+//
+///**
+// * Parses a CSV line into integers.
+// * Results are pushed back into the provided vector 
+// */
+//static void parse_csv_line(const std::string& line, std::vector<int>& vec);
